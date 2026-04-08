@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Varun Gadodia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#FAF7F2;--cream2:#F2EDE4;--cream3:#E8DFD2;--terra:#C1440E;--terra-dim:#8C3410;--terra-pale:#F0D5C8;--brown:#2D1A0E;--brown2:#5C3A2A;--sand:#A8896C;--sand-light:#D4C4B0;--rule:rgba(45,26,14,0.12);--serif:'Playfair Display',Georgia,serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:28px 64px;transition:padding .4s,background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{padding:18px 64px;background:rgba(250,247,242,0.94);backdrop-filter:blur(12px);border-bottom-color:var(--rule)}
+.nav-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--brown);text-decoration:none}
+.nav-logo span{color:var(--terra)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brown2);text-decoration:none;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--terra);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--terra)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--brown);padding:10px 24px;text-decoration:none;transition:background .25s}
+.nav-cta:hover{background:var(--terra)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--brown)}
+.mob-nav{display:none;position:fixed;inset:0;z-index:199;background:var(--cream);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-family:var(--serif);font-size:32px;color:var(--brown);text-decoration:none}
+.mob-nav a:hover{color:var(--terra)}
+.mob-close{position:absolute;top:28px;right:40px;font-size:24px;background:none;border:none;color:var(--brown2);cursor:pointer}
+
+/* SHARED */
+.sw{position:relative;z-index:1;padding:112px 64px}
+.sw.ruled{border-top:1px solid var(--rule)}
+.issue-line{display:flex;align-items:center;gap:16px;margin-bottom:56px}
+.issue-num{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.issue-rule{flex:1;height:1px;background:var(--rule)}
+.issue-title{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+.issue-link{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:gap .2s}
+.issue-link:hover{gap:12px}
+.sec-heading{font-family:var(--serif);font-size:clamp(34px,4.5vw,54px);font-weight:400;line-height:1.1;letter-spacing:-.01em;color:var(--brown)}
+.sec-heading em{font-style:italic;color:var(--terra)}
+.btn-fill{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--terra);padding:14px 32px;text-decoration:none;transition:background .25s,transform .2s}
+.btn-fill:hover{background:var(--terra-dim);transform:translateY(-1px)}
+.btn-line{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-line:hover{color:var(--terra);border-color:var(--terra-pale)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:56% 44%;align-items:center;padding:0 64px;position:relative;z-index:1;border-bottom:1px solid var(--rule)}
+.hero-l{padding:140px 0 80px}
+.hero-kicker{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:40px;opacity:0;animation:rise .7s .2s forwards}
+.hero-kicker::before{content:'';width:32px;height:1px;background:var(--terra)}
+.hero-name{font-family:var(--serif);font-size:clamp(58px,7.5vw,106px);font-weight:700;line-height:1.0;letter-spacing:-.02em;color:var(--brown);margin-bottom:32px;opacity:0;animation:rise .9s .35s forwards}
+.hero-name em{font-style:italic;font-weight:400;color:var(--terra)}
+.hero-deck{font-family:var(--serif);font-size:clamp(15px,1.6vw,19px);font-style:italic;font-weight:400;color:var(--brown2);line-height:1.75;max-width:520px;margin-bottom:52px;opacity:0;animation:rise .9s .5s forwards}
+.hero-btns{display:flex;gap:20px;align-items:center;opacity:0;animation:rise .9s .65s forwards}
+.hero-r{height:100%;display:flex;align-items:center;justify-content:center;padding:140px 0 80px 64px;opacity:0;animation:fadein 1.2s .5s forwards}
+.hero-img-wrap{position:relative;width:min(360px,90%)}
+.hero-img-wrap::after{content:'';position:absolute;inset:-1px;border:1px solid var(--sand-light);transform:translate(14px,14px);z-index:-1}
+.hero-img-wrap .ph{width:100%;aspect-ratio:3/4;background:var(--cream3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.ph-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sand)}
+
+/* JOURNEY PREVIEW */
+.journey-split{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.preview-sub-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.exp-row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;padding:16px 0;border-bottom:1px solid var(--rule)}
+.exp-row:first-of-type{border-top:1px solid var(--rule)}
+.exp-row-company{font-size:14px;font-weight:500;color:var(--brown);margin-bottom:2px}
+.exp-row-role{font-size:12px;font-weight:300;color:var(--brown2)}
+.exp-row-date{font-family:var(--serif);font-size:11px;font-style:italic;color:var(--terra);white-space:nowrap;padding-top:2px}
+.edu-row{display:flex;flex-direction:column;gap:4px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.edu-row:first-of-type{border-top:1px solid var(--rule)}
+.edu-row-school{font-size:14px;font-weight:500;color:var(--brown)}
+.edu-row-degree{font-size:12px;font-weight:300;color:var(--brown2)}
+.edu-row-year{font-family:var(--serif);font-size:11px;font-style:italic;color:var(--terra);margin-top:2px}
+.preview-cta{margin-top:32px}
+
+/* PROJECTS PREVIEW */
+#projects-preview{background:var(--cream2)}
+.projects-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.projects-about-head{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:400;line-height:1.2;color:var(--brown);margin-bottom:16px}
+.projects-about-head em{font-style:italic;color:var(--terra)}
+.projects-about-body{font-size:14px;font-weight:300;color:var(--brown2);line-height:1.85;margin-bottom:32px}
+.proj-card{border:1px solid var(--rule);overflow:hidden;transition:border-color .3s;text-decoration:none;display:block}
+.proj-card:hover{border-color:var(--terra-pale)}
+.proj-card-img{width:100%;aspect-ratio:16/9;background:var(--cream3);overflow:hidden;display:block}
+.proj-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.proj-card:hover .proj-card-img img{transform:scale(1.04)}
+.proj-card-body{padding:24px}
+.proj-card-type{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.proj-card-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--brown);line-height:1.25;margin-bottom:10px}
+.proj-card-tools{font-size:11px;color:var(--sand);letter-spacing:.06em}
+.proj-card-link{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-top:14px;transition:gap .2s}
+.proj-card:hover .proj-card-link{gap:12px}
+
+/* VISUAL BANNER */
+#visual-preview .sw{padding-bottom:0}
+.visual-banner{display:block;width:100%;aspect-ratio:16/5;background:var(--brown);overflow:hidden;position:relative;text-decoration:none;margin-top:0}
+.visual-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+.visual-banner:hover img{transform:scale(1.02)}
+.visual-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative}
+.visual-ph::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(193,68,14,0.04) 0px,rgba(193,68,14,0.04) 1px,transparent 1px,transparent 60px)}
+.visual-ph-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-style:italic;font-weight:300;color:rgba(250,247,242,0.25);letter-spacing:.04em}
+.visual-ph-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(250,247,242,0.2)}
+.visual-banner-caption{display:flex;align-items:center;justify-content:space-between;padding:16px 0 0;margin-bottom:112px}
+.visual-caption-text{font-size:12px;color:var(--sand);letter-spacing:.08em}
+
+/* WRITING PREVIEW */
+.writing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.wcard{border-top:1px solid var(--rule);padding-top:28px;position:relative;text-decoration:none;display:block}
+.wcard::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--terra);transition:width .4s}
+.wcard:hover::before{width:100%}
+.wcard-cat{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:12px}
+.wcard-title{font-family:var(--serif);font-size:clamp(16px,1.8vw,21px);font-weight:400;color:var(--brown);line-height:1.3;margin-bottom:12px}
+.wcard-excerpt{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8;margin-bottom:20px}
+.wcard-meta{display:flex;justify-content:space-between;align-items:center}
+.wcard-date{font-size:11px;color:var(--sand)}
+.wcard-read{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--terra)}
+
+/* CONTACT */
+#contact{background:var(--brown);padding:96px 64px}
+#contact .issue-num{color:var(--terra-pale)}
+#contact .issue-title{color:rgba(250,247,242,.3)}
+#contact .issue-rule{background:rgba(250,247,242,.1)}
+.contact-heading{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:400;font-style:italic;line-height:1.1;letter-spacing:-.02em;color:var(--cream);margin-bottom:24px}
+.contact-heading strong{font-style:normal;font-weight:700;color:var(--terra-pale)}
+.contact-sub{font-size:15px;font-weight:300;color:rgba(250,247,242,.5);line-height:1.85;max-width:480px;margin-bottom:48px}
+.contact-email{display:inline-block;font-family:var(--serif);font-size:clamp(20px,2.8vw,32px);font-weight:400;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(250,247,242,.2);padding-bottom:4px;margin-bottom:56px;transition:color .25s,border-color .25s}
+.contact-email:hover{color:var(--terra-pale);border-color:var(--terra-pale)}
+.contact-socials{display:flex;gap:32px;flex-wrap:wrap}
+.slink{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,242,.4);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+.slink:hover{color:var(--cream)}
+.slink svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+
+/* FOOTER */
+footer{background:var(--brown);padding:24px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(250,247,242,.08)}
+.footer-l{font-size:12px;color:rgba(250,247,242,.3)}
+.footer-r{font-family:var(--serif);font-size:12px;font-style:italic;color:rgba(250,247,242,.3)}
+
+/* ANIMATIONS */
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .sw{padding:80px 40px}
+  #hero{grid-template-columns:1fr;padding:0 40px}
+  .hero-r{display:none}
+  nav,nav.scrolled{padding-left:40px;padding-right:40px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .journey-split{grid-template-columns:1fr;gap:40px}
+  .projects-split{grid-template-columns:1fr;gap:40px}
+  .writing-cards{grid-template-columns:1fr 1fr}
+  #contact{padding:80px 40px}
+  footer{padding:20px 40px}
+}
+@media(max-width:640px){
+  .sw{padding:64px 20px}
+  nav,nav.scrolled{padding-left:20px;padding-right:20px}
+  #hero{padding:0 20px}
+  .writing-cards{grid-template-columns:1fr}
+  #contact{padding:64px 20px}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="journey.html" onclick="closeMob()">Journey</a>
+  <a href="projects.html" onclick="closeMob()">Projects</a>
+  <a href="visual.html" onclick="closeMob()">Visual</a>
+  <a href="writing.html" onclick="closeMob()">Writing</a>
+</div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">V<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="journey.html">Journey</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="visual.html">Visual</a></li>
+    <li><a href="writing.html">Writing</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Say Hi</a>
+  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <div class="hero-kicker">Kolkata · 2025</div>
+    <h1 class="hero-name">Varun<br><em>Gadodia.</em></h1>
+    <p class="hero-deck">Trying to understand how people see, choose, and experience the world — sometimes through a camera, sometimes simply by paying attention.</p>
+    <div class="hero-btns">
+      <a href="journey.html" class="btn-fill">Professional Journey</a>
+      <a href="projects.html" class="btn-line">See Projects →</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-img-wrap">
+      <div class="ph"><span class="ph-label">Your portrait here</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY PREVIEW -->
+<section id="journey-preview">
+  <div class="sw ruled">
+    <div class="issue-line">
+      <span class="issue-num">01</span><div class="issue-rule"></div>
+      <span class="issue-title">Professional Journey</span>
+      <a href="journey.html" class="issue-link">Full Journey →</a>
+    </div>
+    <div class="journey-split">
+      <div class="reveal">
+        <div class="preview-sub-label">Experience</div>
+        <div class="exp-row">
+          <div><div class="exp-row-company">Vikram Solar</div><div class="exp-row-role">Management Trainee, Strategy &amp; Sales</div></div>
+          <div class="exp-row-date">2025 – Now</div>
+        </div>
+        <div class="exp-row">
+          <div><div class="exp-row-company">Godrej Consumer Products</div><div class="exp-row-role">Sales &amp; Marketing Intern</div></div>
+          <div class="exp-row-date">2024</div>
+        </div>
+        <div class="exp-row">
+          <div><div class="exp-row-company">HPAIR — Harvard Conference</div><div class="exp-row-role">Associate of Design</div></div>
+          <div class="exp-row-date">2022</div>
+        </div>
+        <div class="preview-cta"><a href="journey.html" class="btn-line">Full Journey →</a></div>
+      </div>
+      <div class="reveal d2">
+        <div class="preview-sub-label">Education</div>
+        <div class="edu-row">
+          <div class="edu-row-school">S. P. Jain Institute of Management &amp; Research</div>
+          <div class="edu-row-degree">PGDM — Marketing</div>
+          <div class="edu-row-year">2023 – 2025 · Mumbai</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-row-school">Kirori Mal College, University of Delhi</div>
+          <div class="edu-row-degree">B.Sc. Physical Science with Computer Science</div>
+          <div class="edu-row-year">2019 – 2022 · New Delhi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS PREVIEW -->
+<section id="projects-preview">
+  <div class="sw ruled">
+    <div class="issue-line">
+      <span class="issue-num">02</span><div class="issue-rule"></div>
+      <span class="issue-title">Projects</span>
+      <a href="projects.html" class="issue-link">All Projects →</a>
+    </div>
+    <div class="projects-split">
+      <div class="reveal">
+        <h2 class="projects-about-head">Work &amp; <em>Projects</em></h2>
+        <p class="projects-about-body">Case studies, UI/UX, and brand projects from the classroom and beyond. A collection of things I've built, designed, or thought through — more being added over time.</p>
+        <a href="projects.html" class="btn-fill">See All Projects</a>
+      </div>
+      <div class="reveal d2">
+        <a href="https://www.behance.net/gallery/123550819/Movie-Munchies-UIUX-Design-Project" target="_blank" rel="noopener" class="proj-card">
+          <div class="proj-card-img">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/original/69276f240069353.Y3JvcCwyMDcxLDE2MjAsNDA1LDA.png" alt="Movie Munchies UI/UX Project" loading="lazy" onerror="this.parentElement.style.background='var(--cream3)';this.style.display='none'"/>
+          </div>
+          <div class="proj-card-body">
+            <div class="proj-card-type">UI/UX Design · Behance</div>
+            <div class="proj-card-title">Movie Munchies</div>
+            <div class="proj-card-tools">Figma · Photoshop</div>
+            <div class="proj-card-link">View on Behance →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL BANNER -->
+<section id="visual-preview">
+  <div class="sw ruled" style="padding-bottom:24px;">
+    <div class="issue-line" style="margin-bottom:24px;">
+      <span class="issue-num">03</span><div class="issue-rule"></div>
+      <span class="issue-title">Visual</span>
+      <a href="visual.html" class="issue-link">Explore →</a>
+    </div>
+  </div>
+  <a href="visual.html" class="visual-banner">
+    <div class="visual-ph">
+      <div class="visual-ph-title">Visual Work</div>
+      <div class="visual-ph-label">Photography · Graphic Design</div>
+    </div>
+  </a>
+  <div class="sw" style="padding-top:16px;padding-bottom:0;">
+    <div class="visual-banner-caption">
+      <span class="visual-caption-text">Photography &amp; graphic design</span>
+      <a href="visual.html" class="btn-line">Explore Visual →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING PREVIEW -->
+<section id="writing-preview" style="background:var(--cream2);">
+  <div class="sw ruled">
+    <div class="issue-line">
+      <span class="issue-num">04</span><div class="issue-rule"></div>
+      <span class="issue-title">Writing</span>
+      <a href="writing.html" class="issue-link">All Writing →</a>
+    </div>
+    <div class="writing-cards">
+      <a href="https://medium.com/@VarunGadodia/a-lead-doesnt-move-until-someone-decides-it-s-theirs-3098636bbd4e" target="_blank" rel="noopener" class="wcard reveal">
+        <div class="wcard-cat">Sales Strategy</div>
+        <div class="wcard-title">A Lead Doesn't Move Until Someone Decides It's Theirs</div>
+        <div class="wcard-excerpt">Why visibility in a CRM doesn't translate into execution — and what actually makes a pipeline move.</div>
+        <div class="wcard-meta"><span class="wcard-date">Medium</span><span class="wcard-read">Read →</span></div>
+      </a>
+      <div class="wcard reveal d1" style="opacity:.45;cursor:default;">
+        <div class="wcard-cat">Coming Soon</div>
+        <div class="wcard-title">Next piece in progress</div>
+        <div class="wcard-excerpt">More writing on brand, strategy, and the things that sit somewhere between the two.</div>
+        <div class="wcard-meta"><span class="wcard-date">—</span></div>
+      </div>
+      <div class="wcard reveal d2" style="opacity:.45;cursor:default;">
+        <div class="wcard-cat">Coming Soon</div>
+        <div class="wcard-title">Another one on the way</div>
+        <div class="wcard-excerpt">Observations from work, from the street, from sitting still long enough to notice something.</div>
+        <div class="wcard-meta"><span class="wcard-date">—</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="issue-line" style="margin-bottom:48px;">
+    <span class="issue-num">05</span><div class="issue-rule"></div>
+    <span class="issue-title">Contact</span>
+  </div>
+  <h2 class="contact-heading reveal">If something here<br><strong>resonated — say hi.</strong></h2>
+  <p class="contact-sub reveal d1">Whether it's a conversation about brand, a project that needs a thinking partner, or just something interesting you want to share — my inbox is open.</p>
+  <br>
+  <a href="mailto:gadodiavarun17@gmail.com" class="contact-email reveal d2">gadodiavarun17@gmail.com</a>
+  <div class="contact-socials reveal d3">
+    <a href="https://www.linkedin.com/in/varun-gadodia/" target="_blank" class="slink">
+      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+    </a>
+    <a href="https://medium.com/@VarunGadodia" target="_blank" class="slink">
+      <svg viewBox="0 0 24 24"><ellipse cx="7" cy="12" rx="4" ry="5"/><ellipse cx="16" cy="12" rx="2.5" ry="4.5"/><ellipse cx="22" cy="12" rx="1" ry="4"/></svg>Medium
+    </a>
+    <a href="https://www.instagram.com/varuns.drafts/" target="_blank" class="slink">
+      <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram
+    </a>
+    <a href="https://www.behance.net/varungadodia" target="_blank" class="slink">
+      <svg viewBox="0 0 24 24"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.2.561 1.877 1.7 1.877.339 0 .985-.19 1.074-.63h2.982zm-2.956-3.485c-.082-1.08-.66-1.752-1.64-1.752-.985 0-1.527.736-1.69 1.752h3.33z"/><path d="M7 13.5c0 1.378 1.122 2.5 2.5 2.5S12 14.878 12 13.5 10.878 11 9.5 11 7 12.122 7 13.5zM2 6h9c2.761 0 5 2.239 5 5s-2.239 5-5 5H2V6zm2 2v6h4.5C10.433 14 12 12.433 12 10.5S10.433 7 8.5 7H4V8z"/></svg>Behance
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-l">© 2025 Varun Gadodia</span>
+  <span class="footer-r">Kolkata, India</span>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+function openMob(){document.getElementById('mobNav').classList.add('open')}
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
