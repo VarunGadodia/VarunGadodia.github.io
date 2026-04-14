@@ -3,60 +3,50 @@
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Visual — Varun Gadodia</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23C1440E'/><text y='.9em' font-size='62' x='12' fill='white' font-family='serif'>V</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--cream:#FAF7F2;--cream2:#F2EDE4;--cream3:#E8DFD2;--terra:#C1440E;--terra-dim:#8C3410;--terra-pale:#F0D5C8;--brown:#2D1A0E;--brown2:#5C3A2A;--sand:#A8896C;--rule:rgba(45,26,14,0.12);--serif:'Playfair Display',Georgia,serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--brown);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:28px 64px}
-.nav-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--cream);text-decoration:none}
-.nav-logo span{color:var(--terra)}
-.nav-links{display:flex;gap:40px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,242,.45);text-decoration:none;transition:color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--terra);transition:width .3s}
-.nav-links a:hover,.nav-links a.active{color:var(--cream)}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-cta{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);background:rgba(250,247,242,.15);padding:10px 24px;text-decoration:none;transition:background .25s}
-.nav-cta:hover{background:rgba(250,247,242,.25)}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+canvas{display:block;position:fixed;top:0;left:0;width:100%;height:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px}
+.nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.9);text-decoration:none}
+.nav-logo span{color:#e07040}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,0.9)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream)}
-.mob-nav{display:none;position:fixed;inset:0;z-index:199;background:var(--brown);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,0.7)}
+.mob-nav{display:none;position:fixed;inset:0;z-index:199;background:rgba(5,5,20,0.97);flex-direction:column;align-items:center;justify-content:center;gap:28px}
 .mob-nav.open{display:flex}
-.mob-nav a{font-family:var(--serif);font-size:32px;color:var(--cream);text-decoration:none}
-.mob-nav a:hover{color:var(--terra)}
-.mob-close{position:absolute;top:28px;right:40px;font-size:24px;background:none;border:none;color:rgba(250,247,242,.4);cursor:pointer}
-
-main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 64px 80px}
-.empty-state{max-width:480px}
-.empty-label{font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);margin-bottom:32px;display:flex;align-items:center;justify-content:center;gap:16px}
-.empty-label::before,.empty-label::after{content:'';width:32px;height:1px;background:var(--terra)}
-.empty-title{font-family:var(--serif);font-size:clamp(40px,6vw,72px);font-weight:300;font-style:italic;line-height:1.05;letter-spacing:-.02em;color:var(--cream);margin-bottom:24px}
-.empty-sub{font-size:14px;font-weight:300;color:rgba(250,247,242,.4);line-height:1.85}
-
-footer{padding:24px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(250,247,242,.08)}
-.footer-l{font-size:12px;color:rgba(250,247,242,.3)}
-.footer-r a{font-size:12px;color:rgba(250,247,242,.35);text-decoration:none}
-.footer-r a:hover{color:var(--cream)}
-
-@media(max-width:1100px){nav{padding-left:40px;padding-right:40px}.nav-links{display:none}.hamburger{display:flex}footer{padding:20px 40px}}
-@media(max-width:640px){nav{padding-left:20px;padding-right:20px}main{padding:100px 20px 60px}footer{flex-direction:column;gap:8px;text-align:center;padding:20px}}
+.mob-nav a{font-size:26px;color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:300}
+.mob-nav a:hover{color:#e07040}
+.mob-close{position:absolute;top:28px;right:40px;font-size:24px;background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer}
+.sky-text{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;pointer-events:none;text-align:center;padding:20px;gap:16px}
+.sky-main{font-family:'Press Start 2P',monospace;font-size:clamp(14px,2vw,22px);color:rgba(255,255,255,0.92);line-height:2.0;letter-spacing:.02em;text-shadow:3px 3px 0px rgba(0,0,0,0.5)}
+.sky-sub{font-family:'Press Start 2P',monospace;font-size:clamp(6px,0.85vw,9px);color:rgba(255,255,255,0.4);letter-spacing:.1em;text-shadow:2px 2px 0px rgba(0,0,0,0.5);line-height:2}
+.clock-wrap{position:fixed;bottom:40px;right:40px;z-index:20;display:flex;flex-direction:column;align-items:center;gap:8px}
+.clock-lbl{font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.35);letter-spacing:.1em}
+#clksvg{cursor:grab;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5))}
+#clksvg:active{cursor:grabbing}
+.clock-t{font-family:'Press Start 2P',monospace;font-size:9px;color:rgba(255,255,255,0.7);text-shadow:2px 2px 0 rgba(0,0,0,0.5);min-width:64px;text-align:center}
+.back-lnk{position:fixed;bottom:40px;left:40px;z-index:20;font-family:'Press Start 2P',monospace;font-size:7px;letter-spacing:.08em;color:rgba(255,255,255,0.35);text-decoration:none;text-shadow:1px 1px 0 rgba(0,0,0,0.5)}
+.back-lnk:hover{color:rgba(255,255,255,0.8)}
+@media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}.hamburger{display:flex}.clock-wrap{bottom:24px;right:20px}.back-lnk{bottom:24px;left:20px}}
 </style>
 </head>
 <body>
-
-<div class="mob-nav" id="mobNav">
-  <button class="mob-close" onclick="closeMob()">✕</button>
-  <a href="index.html" onclick="closeMob()">Home</a>
-  <a href="journey.html" onclick="closeMob()">Journey</a>
-  <a href="projects.html" onclick="closeMob()">Projects</a>
-  <a href="visual.html" onclick="closeMob()">Visual</a>
-  <a href="writing.html" onclick="closeMob()">Writing</a>
+<canvas id="c"></canvas>
+<div class="mob-nav" id="mn">
+  <button class="mob-close" onclick="cm()">&#10005;</button>
+  <a href="index.html" onclick="cm()">Home</a>
+  <a href="journey.html" onclick="cm()">Journey</a>
+  <a href="projects.html" onclick="cm()">Projects</a>
+  <a href="visual.html" onclick="cm()">Visual</a>
+  <a href="writing.html" onclick="cm()">Writing</a>
 </div>
-
 <nav>
   <a href="index.html" class="nav-logo">V<span>.</span></a>
   <ul class="nav-links">
@@ -65,26 +55,132 @@ footer{padding:24px 64px;display:flex;align-items:center;justify-content:space-b
     <li><a href="visual.html" class="active">Visual</a></li>
     <li><a href="writing.html">Writing</a></li>
   </ul>
-  <a href="https://www.instagram.com/varuns.drafts/" target="_blank" class="nav-cta">Instagram</a>
-  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="om()"><span></span><span></span><span></span></button>
 </nav>
-
-<main>
-  <div class="empty-state">
-    <div class="empty-label">Visual</div>
-    <h1 class="empty-title">Something is<br>being built here.</h1>
-    <p class="empty-sub">Photography, graphic design, and visual work — coming soon. In the meantime, find some of it on Instagram.</p>
-  </div>
-</main>
-
-<footer>
-  <span class="footer-l">© 2025 Varun Gadodia</span>
-  <div class="footer-r"><a href="index.html">← Back to Home</a></div>
-</footer>
-
+<div class="sky-text">
+  <div class="sky-main">Something is<br>being built here.</div>
+  <div class="sky-sub">Photography &nbsp;&middot;&nbsp; Graphic Design &nbsp;&middot;&nbsp; Visual Work</div>
+</div>
+<div class="clock-wrap">
+  <div class="clock-lbl">Drag hands &middot; Double-tap AM/PM</div>
+  <svg id="clksvg" width="72" height="72" viewBox="0 0 72 72">
+    <circle cx="36" cy="36" r="32" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+    <g id="hm"></g>
+    <line id="hh" x1="36" y1="36" x2="36" y2="18" stroke="white" stroke-width="3" stroke-linecap="square" opacity="0.9"/>
+    <line id="mh" x1="36" y1="36" x2="36" y2="11" stroke="white" stroke-width="1.5" stroke-linecap="square" opacity="0.6"/>
+    <rect x="34" y="34" width="4" height="4" fill="white"/>
+  </svg>
+  <div class="clock-t" id="ct">12:00 pm</div>
+</div>
+<a href="index.html" class="back-lnk">&#8592; Home</a>
 <script>
-function openMob(){document.getElementById('mobNav').classList.add('open')}
-function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+function om(){document.getElementById('mn').classList.add('open')}
+function cm(){document.getElementById('mn').classList.remove('open')}
+var cv=document.getElementById('c'),ctx=cv.getContext('2d');
+var W,H,PX=5,frame=0,hr,drift=0,drag=false,lastTap=0;
+function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;cv.style.width=W+'px';cv.style.height=H+'px'}
+window.addEventListener('resize',resize);resize();
+hr=new Date().getHours()+new Date().getMinutes()/60;
+function pal(h){var t=((h%24)+24)%24;
+  if(t<4.5)  return{s1:'#020209',s2:'#04040e',s3:'#060616',st:1.0,mo:1.0,su:0,sy:.5,gw:0};
+  if(t<5.5)  return{s1:'#060814',s2:'#180620',s3:'#380838',st:.55,mo:.4,su:0,sy:.5,gw:0};
+  if(t<6.5)  return{s1:'#14063a',s2:'#6e1438',s3:'#c84018',st:.1,mo:0,su:0,sy:.95,gw:1,gc:'#c84018'};
+  if(t<7.5)  return{s1:'#200848',s2:'#b83020',s3:'#e87010',st:0,mo:0,su:1,sy:.9,gw:1,gc:'#e87010'};
+  if(t<10)   return{s1:'#2868a8',s2:'#4898d0',s3:'#80c0f0',st:0,mo:0,su:1,sy:.62,gw:0};
+  if(t<14)   return{s1:'#1050b8',s2:'#3080d8',s3:'#60a8f8',st:0,mo:0,su:1,sy:.18,gw:1,gc:'#fffacc'};
+  if(t<17)   return{s1:'#2068b0',s2:'#4090d0',s3:'#78b8f0',st:0,mo:0,su:1,sy:.45,gw:0};
+  if(t<18.5) return{s1:'#103888',s2:'#984818',s3:'#e07010',st:0,mo:0,su:1,sy:.82,gw:1,gc:'#e07010'};
+  if(t<20)   return{s1:'#0c0428',s2:'#481040',s3:'#a83828',st:.18,mo:0,su:0,sy:.95,gw:0};
+  if(t<21.5) return{s1:'#060210',s2:'#120628',s3:'#280640',st:.55,mo:.25,su:0,sy:.5,gw:0};
+  return          {s1:'#020209',s2:'#04040e',s3:'#060616',st:1.0,mo:1.0,su:0,sy:.5,gw:0};
+}
+function lc(a,b,t){
+  function r(h,o,l){return parseInt(h.slice(o,l),16)}
+  return 'rgb('+Math.round(r(a,1,3)+(r(b,1,3)-r(a,1,3))*t)+','+Math.round(r(a,3,5)+(r(b,3,5)-r(a,3,5))*t)+','+Math.round(r(a,5,7)+(r(b,5,7)-r(a,5,7))*t)+')';
+}
+function sr(s){var x=Math.sin(s*127.1+s)*43758.5453;return x-Math.floor(x)}
+var STARS=Array.from({length:140},function(_,i){return{px:sr(i*3),py:sr(i*3+1)*.65,sz:sr(i*7)>.88?2:1,tw:sr(i*13)}});
+var CS=[[[0,1,1,1,0,0],[1,1,1,1,1,0],[1,1,1,1,1,1],[0,1,1,1,1,0]],[[0,0,1,1,0,0],[0,1,1,1,1,0],[1,1,1,1,1,1],[0,1,1,1,0,0]],[[0,1,1,0,0,0],[1,1,1,1,1,0],[1,1,1,1,1,1],[0,1,1,1,0,0]],[[0,0,0,1,1,0],[0,1,1,1,1,1],[1,1,1,1,1,0],[0,1,1,1,0,0]]];
+var CLOUDS=Array.from({length:7},function(_,i){return{x:sr(i*5),y:.06+sr(i*5+1)*.36,shape:CS[i%CS.length],scale:Math.round(1.8+sr(i*5+2)*2.2),op:.45+sr(i*5+3)*.5,spd:.00006+sr(i*5+4)*.00014}});
+function draw(){
+  frame++;drift+=0.4;
+  var p=pal(hr);
+  ctx.clearRect(0,0,W,H);
+  var nr=Math.ceil(H/PX)+1;
+  for(var row=0;row<nr;row++){
+    var r=row/nr,col;
+    if(r<.45)col=lc(p.s1,p.s2,r/.45);
+    else if(r<.82)col=lc(p.s2,p.s3,(r-.45)/.37);
+    else col=lc(p.s3,'#000000',(r-.82)/.18);
+    ctx.fillStyle=col;ctx.fillRect(0,row*PX,W,PX+1);
+  }
+  if(p.su&&p.gw){
+    var sx=W*.72,sy=p.sy*H;
+    var gr=ctx.createRadialGradient(sx,sy,PX*4,sx,sy,PX*28);
+    gr.addColorStop(0,p.gc+'99');gr.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=gr;ctx.fillRect(sx-PX*28,sy-PX*28,PX*56,PX*56);
+  }
+  if(p.su){
+    var sx=Math.round(W*.72/PX)*PX,sy=Math.round(p.sy*H/PX)*PX,sr2=5;
+    ctx.fillStyle=(hr>10&&hr<15)?'#fffcc8':'#f8a840';
+    for(var dy=-sr2;dy<=sr2;dy++)for(var dx=-sr2;dx<=sr2;dx++)if(dx*dx+dy*dy<=sr2*sr2)ctx.fillRect(sx+dx*PX,sy+dy*PX,PX,PX);
+  }
+  if(p.mo>0){
+    var mx=Math.round(W*.74/PX)*PX,my=Math.round(.2*H/PX)*PX,mr=3;
+    ctx.fillStyle='rgba(215,215,195,'+p.mo*.88+')';
+    for(var dy=-mr;dy<=mr;dy++)for(var dx=-mr;dx<=mr;dx++)if(dx*dx+dy*dy<=mr*mr)ctx.fillRect(mx+dx*PX,my+dy*PX,PX,PX);
+    ctx.fillStyle=lc(p.s1,p.s2,.3);ctx.globalAlpha=p.mo*.65;
+    var ox=Math.round(mr*.75);
+    for(var dy=-mr;dy<=mr;dy++)for(var dx=-mr;dx<=mr;dx++)if((dx-ox)*(dx-ox)+dy*dy<=mr*mr&&dx*dx+dy*dy<=mr*mr)ctx.fillRect(mx+dx*PX,my+dy*PX,PX,PX);
+    ctx.globalAlpha=1;
+  }
+  if(p.st>0){
+    STARS.forEach(function(s,i){
+      var tw=Math.sin(frame*.05+s.tw*20);
+      var a=p.st*(.35+tw*.65)*(s.sz===2?1:.6);
+      if(a<.04)return;
+      ctx.fillStyle='rgba(255,255,255,'+a+')';
+      ctx.fillRect(Math.round(s.px*W/PX)*PX,Math.round(s.py*H/PX)*PX,s.sz*PX,s.sz*PX);
+    });
+  }
+  var cv2=p.st<.7?(.85-p.st*.9):0;
+  if(cv2>.02){
+    CLOUDS.forEach(function(cloud){
+      var d=(drift*cloud.spd*W+cloud.x*W)%(W+300)-150;
+      var cy2=cloud.y*H,cs=cloud.scale*PX;
+      ctx.fillStyle='rgba(205,215,235,'+cloud.op*cv2+')';
+      cloud.shape.forEach(function(row,ri){
+        row.forEach(function(cell,ci){
+          if(cell)ctx.fillRect(Math.round((d+ci*cs)/PX)*PX,Math.round((cy2+ri*cs)/PX)*PX,cs,cs);
+        });
+      });
+    });
+  }
+  updateClock();
+}
+function updateClock(){
+  var h=((hr%24)+24)%24,ha=((h%12)/12)*360-90,ma=(((h%1)*60)/60)*360-90;
+  var toR=function(a){return a*Math.PI/180};
+  var cx=36,cy=36,hl=17,ml=22;
+  document.getElementById('hh').setAttribute('x2',cx+hl*Math.cos(toR(ha)));
+  document.getElementById('hh').setAttribute('y2',cy+hl*Math.sin(toR(ha)));
+  document.getElementById('mh').setAttribute('x2',cx+ml*Math.cos(toR(ma)));
+  document.getElementById('mh').setAttribute('y2',cy+ml*Math.sin(toR(ma)));
+  var hmk=document.getElementById('hm');
+  if(!hmk.children.length){for(var i=0;i<12;i++){var a=(i/12)*2*Math.PI-Math.PI/2,r1=27,r2=i%3===0?22:24;var ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',cx+r1*Math.cos(a));ln.setAttribute('y1',cy+r1*Math.sin(a));ln.setAttribute('x2',cx+r2*Math.cos(a));ln.setAttribute('y2',cy+r2*Math.sin(a));ln.setAttribute('stroke','rgba(255,255,255,0.3)');ln.setAttribute('stroke-width','1.5');hmk.appendChild(ln);}}
+  var hrs=Math.floor(h),mins=Math.round((h%1)*60);
+  document.getElementById('ct').textContent=(hrs%12||12)+':'+(mins<10?'0':'')+mins+(hrs>=12?' pm':' am');
+}
+var sv=document.getElementById('clksvg');
+function ga(e){var r=sv.getBoundingClientRect(),cx2=r.left+r.width/2,cy2=r.top+r.height/2,px=e.touches?e.touches[0].clientX:e.clientX,py=e.touches?e.touches[0].clientY:e.clientY;return Math.atan2(py-cy2,px-cx2)*180/Math.PI}
+sv.addEventListener('mousedown',function(e){drag=true;e.preventDefault()});
+sv.addEventListener('touchstart',function(){drag=true},{passive:true});
+window.addEventListener('mouseup',function(){drag=false});
+window.addEventListener('touchend',function(){drag=false});
+window.addEventListener('mousemove',function(e){if(!drag)return;var a=ga(e),raw=((a+90+360)%360)/360*12;hr=(hr>=12&&hr<24)?raw+12:raw;draw()});
+window.addEventListener('touchmove',function(e){if(!drag)return;var a=ga(e),raw=((a+90+360)%360)/360*12;hr=(hr>=12&&hr<24)?raw+12:raw;draw()},{passive:true});
+sv.addEventListener('click',function(){var n=Date.now();if(n-lastTap<400){hr=(hr+12)%24;draw()}lastTap=n});
+(function loop(){draw();requestAnimationFrame(loop)})();
 </script>
 </body>
 </html>
