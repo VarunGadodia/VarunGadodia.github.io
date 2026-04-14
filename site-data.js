@@ -9,7 +9,7 @@ const DATA = {
     behance: "https://www.behance.net/varungadodia",
     cv: "/Varun_Gadodia_CV.pdf"
   },
-  about: "Trying to understand how people see, choose, and experience the world — sometimes through a camera, sometimes simply by paying attention. Currently at Vikram Solar figuring out how strategy actually meets the ground. Previously at Godrej Consumer Products learning what drives people to choose one thing over another. PGDM from SPJIMR.",
+  about: "Trying to understand how people see, choose, and experience the world — sometimes through a camera, sometimes simply by paying attention.",
   experience: [
     {
       id: "vikram",
@@ -88,14 +88,12 @@ const DATA = {
       degree: "PGDM — Marketing",
       period: "2023 — 2025",
       location: "Mumbai, India",
-      summary: "Top-15 business school in India. Specialised in Marketing with coursework spanning brand strategy, consumer behaviour, sales & distribution, and financial modelling.",
+      summary: "Specialised in Marketing with coursework spanning brand strategy, consumer behaviour, sales & distribution, and a minor in Finance covering financial modelling as well.",
       highlights: [
-        "<strong>VP, Photography Society</strong> — led 30-member team, university-wide exhibitions with 2.5K+ footfall",
         "<strong>Communications Committee</strong> — digital marketing for Indian Management Conclave & SPARC, 10K+ reach",
         "<strong>National Runner-Up, Castrol Case Competition</strong> — Top 4/300 teams, GTM strategy for ₹5,000 Cr Autocare portfolio",
         "<strong>Asian Paints CANVAS</strong> — Top 42 out of 980+ participants",
         "<strong>Designer, Creatives OJAS</strong> — 50K+ reach and 22K+ registrations",
-        "<strong>Google UX Design Certification</strong> — user research, wireframing, prototyping"
       ]
     },
     {
@@ -106,8 +104,7 @@ const DATA = {
       location: "New Delhi, India",
       summary: "University of Delhi. Where science, systems thinking, and a growing interest in design and communication first collided.",
       highlights: [
-        "Physical Science with Computer Science — built foundations in analytical thinking and data reasoning",
-        "Where curiosity about how systems work translated into an interest in how people and markets behave"
+        ""
       ]
     }
   ],
