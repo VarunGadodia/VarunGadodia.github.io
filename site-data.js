@@ -89,12 +89,7 @@ const DATA = {
       period: "2023 — 2025",
       location: "Mumbai, India",
       summary: "Specialised in Marketing with coursework spanning brand strategy, consumer behaviour, sales & distribution, and a minor in Finance covering financial modelling as well.",
-      highlights: [
-        "<strong>Communications Committee</strong> — digital marketing for Indian Management Conclave & SPARC, 10K+ reach",
-        "<strong>National Runner-Up, Castrol Case Competition</strong> — Top 4/300 teams, GTM strategy for ₹5,000 Cr Autocare portfolio",
-        "<strong>Asian Paints CANVAS</strong> — Top 42 out of 980+ participants",
-        "<strong>Designer, Creatives OJAS</strong> — 50K+ reach and 22K+ registrations",
-      ]
+      highlights: []
     },
     {
       id: "kmc",
