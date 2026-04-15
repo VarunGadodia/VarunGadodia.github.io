@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Professional Journey &#8212; Varun Gadodia</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23C1440E'/><text y='.88em' font-size='72' x='8' fill='white' font-family='Georgia,serif' font-weight='700'>V</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#FAF7F2;--cream2:#F2EDE4;--terra:#C1440E;--terra-pale:#F0D5C8;--brown:#2D1A0E;--brown2:#5C3A2A;--sand:#A8896C;--rule:rgba(45,26,14,0.12);--serif:"Playfair Display",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 64px;transition:padding .4s,background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{padding:16px 64px;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom-color:var(--rule)}
+.nav-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--brown);text-decoration:none}.nav-logo span{color:var(--terra)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brown2);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--terra)}
+.nav-cta{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra-pale);padding:9px 22px;text-decoration:none;transition:background .25s,color .25s}
+.nav-cta:hover{background:var(--terra);color:var(--cream)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--brown)}
+.mob-nav{display:none;position:fixed;inset:0;z-index:199;background:var(--cream);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-family:var(--serif);font-size:28px;color:var(--brown);text-decoration:none}.mob-nav a:hover{color:var(--terra)}
+.mob-close{position:absolute;top:28px;right:40px;font-size:24px;background:none;border:none;color:var(--brown2);cursor:pointer}
+/* HERO */
+#hero{padding:160px 64px 72px;border-bottom:1px solid var(--rule)}
+.page-eyebrow{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px;display:flex;align-items:center;gap:12px;opacity:0;animation:rise .7s .1s forwards}
+.page-eyebrow::before{content:"";width:24px;height:1px;background:var(--terra)}
+.page-title{font-family:var(--serif);font-size:clamp(44px,6vw,80px);font-weight:400;font-style:italic;line-height:1.05;letter-spacing:-.02em;color:var(--brown);margin-bottom:28px;opacity:0;animation:rise .9s .2s forwards}
+.page-summary{font-size:16px;font-weight:300;color:var(--brown2);line-height:1.9;max-width:640px;opacity:0;animation:rise .9s .35s forwards}
+.page-summary strong{color:var(--brown);font-weight:500}
+/* SECTION */
+.sw{padding:88px 64px;border-top:1px solid var(--rule)}
+.issue-line{display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.issue-num{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.issue-rule{flex:1;height:1px;background:var(--rule)}
+.issue-title{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+/* EXP ROWS */
+.exp-row{border-bottom:1px solid var(--rule)}
+.exp-row:first-child{border-top:1px solid var(--rule)}
+.exp-row-trigger{display:grid;grid-template-columns:200px 1fr auto;gap:32px;align-items:start;padding:32px 0;cursor:pointer;user-select:none}
+.exp-row-trigger:hover .exp-company{color:var(--terra)}
+.exp-period-col{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--terra);padding-top:3px;line-height:1.5}
+.exp-loc{font-size:11px;color:var(--sand);margin-top:4px;letter-spacing:.06em}
+.exp-company{font-family:var(--serif);font-size:clamp(18px,2vw,23px);font-weight:500;color:var(--brown);margin-bottom:4px;transition:color .2s}
+.exp-role{font-size:13px;font-weight:400;color:var(--terra);letter-spacing:.03em}
+.exp-chevron{font-size:20px;font-weight:300;color:var(--terra);transition:transform .3s;user-select:none;align-self:center;padding:4px 8px}
+.exp-row.open .exp-chevron{transform:rotate(45deg)}
+.exp-row-body{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .35s ease;opacity:0;padding-left:232px}
+.exp-row.open .exp-row-body{opacity:1}
+.exp-summary-text{font-size:14px;font-weight:300;color:var(--brown2);line-height:1.9;margin-bottom:20px;max-width:680px}
+.exp-sub-label{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:12px;margin-top:24px}
+.exp-bullets-list,.exp-proj-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.exp-bullets-list li,.exp-proj-list li{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8;padding-left:16px;border-left:1px solid var(--terra-pale)}
+.exp-bullets-list li strong{color:var(--brown);font-weight:500}
+.exp-skills-row{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:32px;margin-top:4px}
+.exp-skill-tag{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:var(--terra-pale);padding:5px 12px}
+/* EDU */
+#education{background:var(--cream2)}
+.edu-row{border-bottom:1px solid var(--rule)}
+.edu-row:first-child{border-top:1px solid var(--rule)}
+.edu-row-trigger{display:grid;grid-template-columns:200px 1fr auto;gap:32px;align-items:start;padding:32px 0;cursor:pointer;user-select:none}
+.edu-row-trigger:hover .edu-school{color:var(--terra)}
+.edu-school{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-weight:500;color:var(--brown);margin-bottom:4px;transition:color .2s}
+.edu-degree{font-size:13px;font-weight:400;color:var(--terra)}
+.edu-row-body{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .35s ease;opacity:0;padding-left:232px}
+.edu-row.open .edu-row-body{opacity:1}
+.edu-summary{font-size:14px;font-weight:300;color:var(--brown2);line-height:1.9;margin-bottom:16px;padding-top:4px;max-width:680px}
+.edu-highlights{list-style:none;display:flex;flex-direction:column;gap:9px;padding-bottom:28px}
+.edu-highlights li{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8;padding-left:16px;border-left:1px solid var(--terra-pale)}
+.edu-highlights li strong{color:var(--brown);font-weight:500}
+footer{background:var(--brown);padding:20px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(250,247,242,.08)}
+.footer-l{font-size:11px;color:rgba(250,247,242,.25)}
+.footer-r a{font-size:11px;color:rgba(250,247,242,.35);text-decoration:none;font-family:var(--serif);font-style:italic}
+.footer-r a:hover{color:var(--cream)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}.reveal.in{opacity:1;transform:translateY(0)}.d1{transition-delay:.12s}.d2{transition-delay:.24s}
+@media(max-width:1100px){.sw{padding:72px 40px}#hero{padding:120px 40px 64px}nav,nav.scrolled{padding-left:40px;padding-right:40px}.nav-links,.nav-cta{display:none}.hamburger{display:flex}.exp-row-trigger,.edu-row-trigger{grid-template-columns:1fr auto;gap:16px}.exp-period-col{display:none}.exp-row-body,.edu-row-body{padding-left:0}footer{padding:16px 40px}}
+@media(max-width:640px){.sw{padding:56px 20px}#hero{padding:100px 20px 56px}nav,nav.scrolled{padding-left:20px;padding-right:20px}footer{flex-direction:column;gap:6px;text-align:center;padding:16px 20px}}
+</style>
+</head>
+<body>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">&#10005;</button>
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="journey.html" onclick="closeMob()">Journey</a>
+  <a href="projects.html" onclick="closeMob()">Projects</a>
+  <a href="visual.html" onclick="closeMob()">Visual</a>
+  <a href="writing.html" onclick="closeMob()">Writing</a>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">V<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="journey.html" class="active">Journey</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="visual.html">Visual</a></li>
+    <li><a href="writing.html">Writing</a></li>
+  </ul>
+  <a href="Varun_Gadodia_CV.pdf" class="nav-cta" download>Download CV</a>
+  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+</nav>
+<section id="hero">
+  <div class="page-eyebrow">Professional Journey</div>
+  <h1 class="page-title">The work,<br>so far.</h1>
+  <p class="page-summary">Started in physical sciences, ended up in marketing strategy &#8212; the thread between the two is probably just an obsession with <strong>how things actually work</strong>. Currently at Vikram Solar. Previously at Godrej Consumer Products.</p>
+</section>
+<section id="experience" class="sw">
+  <div class="issue-line"><span class="issue-num">01</span><div class="issue-rule"></div><span class="issue-title">Work Experience</span></div>
+  <div id="exp-list"></div>
+</section>
+<section id="education" class="sw">
+  <div class="issue-line"><span class="issue-num">02</span><div class="issue-rule"></div><span class="issue-title">Education</span></div>
+  <div id="edu-list"></div>
+</section>
+<footer>
+  <span class="footer-l">&#169; 2025 Varun Gadodia</span>
+  <div class="footer-r"><a href="index.html">&#8592; Back to Home</a></div>
+</footer>
+<script>
+var nav=document.getElementById("nav");
+window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",window.scrollY>60)});
+function openMob(){document.getElementById("mobNav").classList.add("open")}
+function closeMob(){document.getElementById("mobNav").classList.remove("open")}
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add("in")})},{threshold:.08,rootMargin:"0px 0px -40px 0px"});
+function toggleRow(row,cls){var o=row.classList.contains("open");document.querySelectorAll("."+cls+".open").forEach(function(r){r.classList.remove("open");r.querySelector("."+cls+"-body").style.maxHeight="0"});if(!o){row.classList.add("open");var b=row.querySelector("."+cls+"-body");b.style.maxHeight=b.scrollHeight+"px"}}
+var EXP=[{id:"vikram",company:"Vikram Solar",role:"Management Trainee &#8212; Strategy &amp; Sales Transformation",period:"Jul 2025 &#8212; Present",location:"Kolkata, India",summary:"Working at the intersection of corporate strategy, sales execution, and product-market alignment in a fast-scaling B2B environment. Building structured market intelligence, improving commercial visibility through CRM systems, and contributing to distribution and key account strategy.",bullets:["Managing channel performance for <strong>100+ distributors &amp; 500+ retail outlets</strong>, improving visibility of secondary sales and execution gaps","Analysing <strong>2,500+ leads</strong> across the acquisition funnel, identifying conversion bottlenecks and improving qualified lead share by ~22%","Leading CRM optimisation (Zoho &amp; Salesforce), <strong>reducing lead response time by 18%</strong> and improving conversion velocity","Designing <strong>incentive structure for Sales Personnel (~&#8377;1.5 Cr payout)</strong>, aligning with target achievement and margin performance","Building beat plans and engagement strategy for key accounts, enabling focused coverage and higher sales throughput","Conducting annual business planning and market intelligence to support commercial decision-making"],projects:["Annual Business Planning &amp; Market Intelligence","Sales Funnel Structuring &amp; CRM Dashboarding","Distribution Network Analytics &amp; Channel Strategy","Lead Management &amp; Conversion Funnel Optimisation","Key Account Segmentation &amp; Incentive Design","Product-Market Alignment &amp; Offering Strategy"],skills:["Market Research &amp; Competitive Benchmarking","GTM Strategy &amp; Commercial Planning","CRM &amp; Sales Analytics","Distribution &amp; Channel Strategy","Business Process Optimisation","Stakeholder Management","Structured Problem Solving","B2B Sales","Product Thinking"]},{id:"gcpl",company:"Godrej Consumer Products Limited",role:"Sales &amp; Marketing Intern",period:"Aug &#8212; Oct 2024",location:"Mumbai, India",summary:"Hands-on experience in frontline FMCG sales across retail and distributor channels, focusing on driving secondary sales through visibility, availability, and assortment. Worked closely with on-ground sales teams to improve outlet execution and translate consumer insights into actionable in-store strategies.",bullets:["Developed <strong>5-year category growth strategy</strong> for &#8377;810 Cr fragrance portfolio, identifying <strong>&#8377;175 Cr opportunity</strong> in the women&#8217;s EDP segment","Designed <strong>&#8377;89L media investment plan</strong>, optimising channel mix and reach efficiency to achieve 25% reach sufficiency","Conducted <strong>64 consumer interviews</strong> and Nielsen Share analysis to identify 2 product gaps","Delivered <strong>104% of &#8377;7.2L sales target</strong> by refining beat planning and outlet coverage strategy","Improved sales productivity by <strong>30%</strong> across 4 reps; onboarded <strong>207 outlets</strong> via Bizom"],projects:["Territory Sales Execution &amp; Beat Planning","Outlet Performance Improvement","Retail Expansion &amp; Outlet Onboarding","In-store Merchandising &amp; Competitive Benchmarking","Consumer Insight Translation to Retail Execution"],skills:["FMCG Sales Execution","Retail &amp; Distributor Management","Beat Planning &amp; Outlet Segmentation","In-store Visibility &amp; Merchandising","Consumer Behaviour &amp; Shopper Insights","Channel Expansion &amp; Coverage","Competitive Analysis","Sales Data Interpretation"]},{id:"hpair",company:"Harvard College Project for Asian &amp; International Relations (HPAIR)",role:"Associate of Design",period:"May &#8212; Sep 2022",location:"New Delhi, India",summary:"Contributed to a large-scale international event as part of a cross-functional team &#8212; taking ownership of the visual identity and brand communication end-to-end, from concept to execution across digital and on-ground channels.",bullets:["Led <strong>branding and visual communication strategy</strong> for a 5-day global Harvard conference, hosted in India for the first time in 30 years","Collaborated with marketing, partnerships, and operations teams to ensure campaign execution across digital channels"],projects:[],skills:["Visual Communication","Brand Design","Campaign Execution","Cross-functional Collaboration"]}];
+var EDU=[{id:"spjimr",school:"S. P. Jain Institute of Management &amp; Research",degree:"PGDM &#8212; Marketing",period:"2023 &#8212; 2025",location:"Mumbai, India",summary:"Top-15 business school in India. Specialised in Marketing with coursework spanning brand strategy, consumer behaviour, sales &amp; distribution, and financial modelling.",highlights:["<strong>VP, Photography Society</strong> &#8212; led 30-member team, exhibitions with 2.5K+ footfall","<strong>Communications Committee</strong> &#8212; digital marketing for Indian Management Conclave &amp; SPARC, 10K+ reach","<strong>National Runner-Up, Castrol Case Competition</strong> &#8212; Top 4/300 teams, GTM strategy for &#8377;5,000 Cr Autocare portfolio","<strong>Asian Paints CANVAS</strong> &#8212; Top 42 out of 980+ participants","<strong>Designer, Creatives OJAS</strong> &#8212; 50K+ reach and 22K+ registrations","<strong>Google UX Design Certification</strong> &#8212; user research, wireframing, prototyping"]},{id:"kmc",school:"Kirori Mal College, University of Delhi",degree:"B.Sc. Physical Science with Computer Science",period:"2019 &#8212; 2022",location:"New Delhi, India",summary:"University of Delhi. Where science, systems thinking, and a growing interest in design and communication first collided.",highlights:["Physical Science with Computer Science &#8212; built foundations in analytical thinking and data reasoning","Where curiosity about how systems work translated into an interest in how people and markets behave"]}];
+document.getElementById("exp-list").innerHTML=EXP.map(function(exp,i){
+  return "<div class=\"exp-row reveal\" style=\"transition-delay:"+i*.1+"s\">"
+    +"<div class=\"exp-row-trigger\" onclick=\"toggleRow(this.closest(\'.exp-row\'),\'exp-row\')\"><div class=\"exp-period-col\"><div>"+exp.period+"</div><div class=\"exp-loc\">"+exp.location+"</div></div>"
+    +"<div><div class=\"exp-company\">"+exp.company+"</div><div class=\"exp-role\">"+exp.role+"</div></div>"
+    +"<div class=\"exp-chevron\">+</div></div>"
+    +"<div class=\"exp-row-body\" style=\"max-height:0\">"
+    +"<p class=\"exp-summary-text\">"+exp.summary+"</p>"
+    +"<div class=\"exp-sub-label\">What I worked on</div>"
+    +"<ul class=\"exp-bullets-list\">"+exp.bullets.map(function(b){return"<li>"+b+"</li>"}).join("")+"</ul>"
+    +(exp.projects.length?"<div class=\"exp-sub-label\">Projects</div><ul class=\"exp-proj-list\">"+exp.projects.map(function(p){return"<li>"+p+"</li>"}).join("")+"</ul>":"")
+    +"<div class=\"exp-sub-label\">Skills</div>"
+    +"<div class=\"exp-skills-row\">"+exp.skills.map(function(s){return"<span class=\"exp-skill-tag\">"+s+"</span>"}).join("")+"</div>"
+    +"</div></div>";
+}).join("");
+document.getElementById("edu-list").innerHTML=EDU.map(function(edu,i){
+  return "<div class=\"edu-row reveal\" style=\"transition-delay:"+i*.1+"s\">"
+    +"<div class=\"edu-row-trigger\" onclick=\"toggleRow(this.closest(\'.edu-row\'),\'edu-row\')\"><div class=\"exp-period-col\"><div>"+edu.period+"</div><div class=\"exp-loc\">"+edu.location+"</div></div>"
+    +"<div><div class=\"edu-school\">"+edu.school+"</div><div class=\"edu-degree\">"+edu.degree+"</div></div>"
+    +"<div class=\"exp-chevron\">+</div></div>"
+    +"<div class=\"edu-row-body\" style=\"max-height:0\">"
+    +"<p class=\"edu-summary\">"+edu.summary+"</p>"
+    +"<ul class=\"edu-highlights\">"+edu.highlights.map(function(h){return"<li>"+h+"</li>"}).join("")+"</ul>"
+    +"</div></div>";
+}).join("");
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
