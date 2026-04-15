@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Varun Gadodia</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23C1440E'/><text y='.88em' font-size='72' x='8' fill='white' font-family='Georgia,serif' font-weight='700'>V</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#FAF7F2;--cream2:#F2EDE4;--cream3:#E8DFD2;--terra:#C1440E;--terra-dim:#8C3410;--terra-pale:#F0D5C8;--brown:#2D1A0E;--brown2:#5C3A2A;--sand:#A8896C;--rule:rgba(45,26,14,0.12);--serif:"Playfair Display",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:28px 64px;transition:padding .4s,background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{padding:18px 64px;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom-color:var(--rule)}
+.nav-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--brown);text-decoration:none}.nav-logo span{color:var(--terra)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brown2);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--terra)}
+.nav-cta{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--brown);padding:10px 24px;text-decoration:none;transition:background .25s}
+.nav-cta:hover{background:var(--terra)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--brown)}
+.mob-nav{display:none;position:fixed;inset:0;z-index:199;background:var(--cream);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-family:var(--serif);font-size:30px;color:var(--brown);text-decoration:none}.mob-nav a:hover{color:var(--terra)}
+.mob-close{position:absolute;top:28px;right:40px;font-size:24px;background:none;border:none;color:var(--brown2);cursor:pointer}
+.sw{padding:112px 64px;border-top:1px solid var(--rule)}
+.issue-line{display:flex;align-items:center;gap:16px;margin-bottom:52px}
+.issue-num{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.issue-rule{flex:1;height:1px;background:var(--rule)}
+.issue-title{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+.issue-link{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);text-decoration:none;white-space:nowrap;margin-left:16px;transition:opacity .2s}
+.issue-link:hover{opacity:.7}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 64px 80px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.hero-kicker{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:40px;opacity:0;animation:rise .7s .2s forwards}
+.hero-kicker::before{content:"";width:32px;height:1px;background:var(--terra)}
+.hero-name{font-family:var(--serif);font-size:clamp(60px,8vw,110px);font-weight:700;line-height:1.0;letter-spacing:-.02em;color:var(--brown);margin-bottom:32px;opacity:0;animation:rise .9s .35s forwards}
+.hero-name em{font-style:italic;font-weight:400;color:var(--terra)}
+.hero-about{font-family:var(--serif);font-size:clamp(16px,1.8vw,21px);font-style:italic;font-weight:400;color:var(--brown2);line-height:1.75;max-width:640px;margin-bottom:52px;opacity:0;animation:rise .9s .5s forwards}
+.hero-btns{display:flex;gap:20px;align-items:center;flex-wrap:wrap;opacity:0;animation:rise .9s .65s forwards}
+.btn-fill{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--terra);padding:14px 32px;text-decoration:none;transition:background .25s,transform .2s}
+.btn-fill:hover{background:var(--terra-dim);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-ghost:hover{color:var(--terra);border-color:var(--terra-pale)}
+.exp-item{border-bottom:1px solid var(--rule);overflow:hidden}.exp-item:first-child{border-top:1px solid var(--rule)}
+.exp-trigger{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:24px 0;cursor:pointer;user-select:none}
+.exp-trigger:hover .exp-company{color:var(--terra)}
+.exp-company{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-weight:500;color:var(--brown);margin-bottom:3px;transition:color .2s}
+.exp-role-line{font-size:12px;font-weight:400;color:var(--terra);letter-spacing:.03em}.exp-meta-line{font-size:11px;color:var(--sand);margin-top:3px}
+.exp-chevron{font-size:20px;font-weight:300;color:var(--terra);transition:transform .3s;padding:4px 8px;user-select:none;flex-shrink:0}
+.exp-item.open .exp-chevron{transform:rotate(45deg)}
+.exp-body{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .35s ease;opacity:0}.exp-item.open .exp-body{opacity:1}
+.exp-tabs{display:flex;gap:0;border-bottom:1px solid var(--rule)}
+.exp-tab{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);padding:11px 18px 11px 0;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.exp-tab.active,.exp-tab:hover{color:var(--terra);border-bottom-color:var(--terra)}
+.exp-panel{display:none;padding:22px 0 28px}.exp-panel.active{display:block}
+.exp-summary-text{font-size:14px;font-weight:300;color:var(--brown2);line-height:1.9;max-width:720px}
+.exp-bullets-list,.exp-projects-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.exp-bullets-list li,.exp-projects-list li{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8;padding-left:16px;border-left:1px solid var(--terra-pale)}
+.exp-bullets-list li strong{color:var(--brown);font-weight:500}
+.exp-skills-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.exp-skill-tag{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:var(--terra-pale);padding:5px 12px}
+#education{background:var(--cream2)}
+.edu-item{border-bottom:1px solid var(--rule);overflow:hidden}.edu-item:first-child{border-top:1px solid var(--rule)}
+.edu-trigger{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:24px 0;cursor:pointer;user-select:none}
+.edu-trigger:hover .edu-school-name{color:var(--terra)}
+.edu-school-name{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-weight:500;color:var(--brown);margin-bottom:3px;transition:color .2s}
+.edu-degree-line{font-size:12px;font-weight:400;color:var(--terra)}.edu-meta-line{font-size:11px;color:var(--sand);margin-top:3px}
+.edu-body{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .35s ease;opacity:0}.edu-item.open .edu-body{opacity:1}
+.edu-summary{font-size:14px;font-weight:300;color:var(--brown2);line-height:1.9;max-width:720px;margin-bottom:16px;padding-top:20px}
+.edu-highlights{list-style:none;display:flex;flex-direction:column;gap:9px;padding-bottom:28px}
+.edu-highlights li{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8;padding-left:16px;border-left:1px solid var(--terra-pale)}
+.edu-highlights li strong{color:var(--brown);font-weight:500}
+#writing{background:var(--cream)}
+.writing-list{border-top:1px solid var(--rule)}
+.witem{display:grid;grid-template-columns:72px 1fr auto;gap:40px;align-items:start;padding:36px 0;border-bottom:1px solid var(--rule);text-decoration:none;position:relative}
+.witem::before{content:"";position:absolute;left:-64px;right:-64px;top:0;bottom:0;background:var(--terra-pale);opacity:0;transition:opacity .25s;pointer-events:none}
+.witem:hover::before{opacity:.15}
+.witem-num{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--terra);padding-top:3px;position:relative;z-index:1}
+.witem-body{position:relative;z-index:1}.witem-cat{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.witem-title{font-family:var(--serif);font-size:clamp(18px,2.2vw,24px);font-weight:400;color:var(--brown);line-height:1.25;margin-bottom:10px}
+.witem-excerpt{font-size:13px;font-weight:300;color:var(--brown2);line-height:1.8}
+.witem-meta{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:3px}
+.witem-date{font-size:11px;color:var(--sand)}.witem-read{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--terra)}
+#projects{background:var(--cream2)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.proj-card{border:1px solid var(--rule);overflow:hidden;text-decoration:none;display:block;transition:border-color .3s;background:var(--cream)}
+.proj-card:hover{border-color:var(--terra-pale)}
+.proj-card-img{width:100%;aspect-ratio:16/9;background:var(--cream3);overflow:hidden}
+.proj-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.proj-card:hover .proj-card-img img{transform:scale(1.04)}
+.proj-card-body{padding:22px}.proj-card-type{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
+.proj-card-title{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--brown);line-height:1.3;margin-bottom:8px}
+.proj-card-desc{font-size:12px;font-weight:300;color:var(--brown2);line-height:1.7;margin-bottom:10px}
+.proj-card-tools{font-size:10px;color:var(--sand);letter-spacing:.06em}
+.proj-card-link{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-top:10px;transition:gap .2s}
+.proj-card:hover .proj-card-link{gap:10px}
+.proj-ph{width:100%;min-height:80px;height:100%;display:flex;align-items:center;justify-content:center}
+.proj-ph span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+#contact{background:var(--brown);padding:112px 64px}
+#contact .issue-num{color:var(--terra-pale)}#contact .issue-title{color:rgba(250,247,242,.3)}#contact .issue-rule{background:rgba(250,247,242,.1)}
+.contact-heading{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:400;font-style:italic;line-height:1.1;color:var(--cream);margin-bottom:24px;margin-top:48px}
+.contact-heading strong{font-style:normal;font-weight:700;color:var(--terra-pale)}
+.contact-sub{font-size:15px;font-weight:300;color:rgba(250,247,242,.5);line-height:1.85;max-width:480px;margin-bottom:44px}
+.contact-email{display:block;font-family:var(--serif);font-size:clamp(20px,2.8vw,32px);font-weight:400;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(250,247,242,.2);padding-bottom:4px;margin-bottom:10px;width:fit-content;transition:color .25s,border-color .25s}
+.contact-email:hover{color:var(--terra-pale);border-color:var(--terra-pale)}
+.contact-phone{font-size:14px;font-weight:300;color:rgba(250,247,242,.4);margin-bottom:44px;letter-spacing:.04em}
+.contact-socials{display:flex;gap:28px;flex-wrap:wrap}
+.slink{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,242,.4);text-decoration:none;display:flex;align-items:center;gap:7px;transition:color .2s}
+.slink:hover{color:var(--cream)}.slink svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+footer{background:var(--brown);padding:24px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(250,247,242,.08)}
+.footer-l{font-size:12px;color:rgba(250,247,242,.25)}.footer-r{font-family:var(--serif);font-size:12px;font-style:italic;color:rgba(250,247,242,.25)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+@media(max-width:1100px){.sw{padding:80px 40px}#hero{padding:120px 40px 72px}#contact{padding:80px 40px}nav,nav.scrolled{padding-left:40px;padding-right:40px}.nav-links,.nav-cta{display:none}.hamburger{display:flex}.proj-grid{grid-template-columns:1fr 1fr}.witem{grid-template-columns:1fr;gap:8px}.witem-num,.witem-meta{display:none}.witem::before{left:-40px;right:-40px}footer{padding:20px 40px}}
+@media(max-width:640px){.sw{padding:64px 20px}#hero{padding:100px 20px 56px}#contact{padding:64px 20px}nav,nav.scrolled{padding-left:20px;padding-right:20px}.proj-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:8px;text-align:center;padding:20px}}
+</style>
+</head>
+<body>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">&#10005;</button>
+  <a href="#hero" onclick="closeMob()">Home</a>
+  <a href="#experience" onclick="closeMob()">Experience</a>
+  <a href="#education" onclick="closeMob()">Education</a>
+  <a href="#writing" onclick="closeMob()">Writing</a>
+  <a href="#projects" onclick="closeMob()">Projects</a>
+  <a href="visual.html" onclick="closeMob()">Visual</a>
+</div>
+<nav id="nav">
+  <a href="#hero" class="nav-logo">V<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="visual.html">Visual</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Say Hi</a>
+  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+</nav>
+<section id="hero">
+  
+  <div class="hero-kicker">Strategy &#xB7; Sales &#xB7; Marketing</div>
+  <h1 class="hero-name">Varun<br><em>Gadodia.</em></h1>
+  <p class="hero-about">Genuinely curious about how things work &#8212; markets, people, decisions. Drawn to the space where sharp thinking meets execution. I like problems that don&#8217;t have clean answers yet.</p>
+  <div class="hero-btns">
+    <a href="#experience" class="btn-fill">See Experience</a>
+    <a href="journey.html" class="btn-ghost">Full Journey &#8594;</a>
+  </div>
+</section>
+<section id="experience" class="sw">
+  <div class="issue-line"><span class="issue-num">01</span><div class="issue-rule"></div><span class="issue-title">Experience</span><a href="journey.html" class="issue-link">Full Journey &#8594;</a></div>
+  <div id="exp-list"></div>
+</section>
+<section id="education" class="sw">
+  <div class="issue-line"><span class="issue-num">02</span><div class="issue-rule"></div><span class="issue-title">Education</span><a href="journey.html#education" class="issue-link">Full Journey &#8594;</a></div>
+  <div id="edu-list"></div>
+</section>
+<section id="writing" class="sw">
+  <div class="issue-line"><span class="issue-num">03</span><div class="issue-rule"></div><span class="issue-title">Writing</span><a href="writing.html" class="issue-link">All Writing &#8594;</a></div>
+  <div class="writing-list" id="writing-list"></div>
+</section>
+<section id="projects" class="sw">
+  <div class="issue-line"><span class="issue-num">04</span><div class="issue-rule"></div><span class="issue-title">Projects</span><a href="projects.html" class="issue-link">All Projects &#8594;</a></div>
+  <div class="proj-grid" id="proj-grid"></div>
+</section>
+<section id="contact">
+  <div class="issue-line" style="margin-bottom:0"><span class="issue-num">05</span><div class="issue-rule"></div><span class="issue-title">Contact</span></div>
+  <h2 class="contact-heading">If something here<br><strong>resonated &#8212; say hi.</strong></h2>
+  <p class="contact-sub">Whether it&#8217;s a conversation about brand, a project that needs a thinking partner, or just something interesting you want to share.</p>
+  <a href="mailto:gadodiavarun17@gmail.com" class="contact-email">gadodiavarun17@gmail.com</a>
+  <div class="contact-phone">+91 99684 00100</div>
+  <div class="contact-socials" id="contact-socials"></div>
+</section>
+<footer><span class="footer-l">&#169; 2025 Varun Gadodia</span><span class="footer-r">Kolkata, India</span></footer>
+<script>
+var nav=document.getElementById("nav");
+window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",window.scrollY>60)});
+function openMob(){document.getElementById("mobNav").classList.add("open")}
+function closeMob(){document.getElementById("mobNav").classList.remove("open")}
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add("in")})},{threshold:.08,rootMargin:"0px 0px -40px 0px"});
+function toggleExp(item){var o=item.classList.contains("open");document.querySelectorAll(".exp-item.open").forEach(function(i){i.classList.remove("open");i.querySelector(".exp-body").style.maxHeight="0"});if(!o){item.classList.add("open");var b=item.querySelector(".exp-body");b.style.maxHeight=b.scrollHeight+"px"}}
+function toggleEdu(item){var o=item.classList.contains("open");document.querySelectorAll(".edu-item.open").forEach(function(i){i.classList.remove("open");i.querySelector(".edu-body").style.maxHeight="0"});if(!o){item.classList.add("open");var b=item.querySelector(".edu-body");b.style.maxHeight=b.scrollHeight+"px"}}
+function switchTab(btn,pid){var p=btn.closest(".exp-body");p.querySelectorAll(".exp-tab").forEach(function(t){t.classList.remove("active")});p.querySelectorAll(".exp-panel").forEach(function(x){x.classList.remove("active")});btn.classList.add("active");document.getElementById(pid).classList.add("active");var body=btn.closest(".exp-item").querySelector(".exp-body");body.style.maxHeight="none";setTimeout(function(){body.style.maxHeight=body.scrollHeight+"px"},10)}
+var EXP=[{id:"vikram",company:"Vikram Solar",role:"Management Trainee &#8212; Strategy &amp; Sales Transformation",period:"Jul 2025 &#8212; Present",location:"Kolkata, India",summary:"Working at the intersection of corporate strategy, sales execution, and product-market alignment in a fast-scaling B2B environment. Building structured market intelligence, improving commercial visibility through CRM systems, and contributing to distribution and key account strategy.",bullets:["Managing channel performance for <strong>100+ distributors &amp; 500+ retail outlets</strong>, improving visibility of secondary sales and execution gaps","Analysing <strong>2,500+ leads</strong> across the acquisition funnel, identifying conversion bottlenecks and improving qualified lead share by ~22%","Leading CRM optimisation (Zoho &amp; Salesforce), <strong>reducing lead response time by 18%</strong> and improving conversion velocity","Designing <strong>incentive structure for Sales Personnel (~&#8377;1.5 Cr payout)</strong>, aligning with target achievement and margin performance","Building beat plans and engagement strategy for key accounts, enabling focused coverage and higher sales throughput","Conducting annual business planning and market intelligence to support commercial decision-making"],projects:["Annual Business Planning &amp; Market Intelligence","Sales Funnel Structuring &amp; CRM Dashboarding","Distribution Network Analytics &amp; Channel Strategy","Lead Management &amp; Conversion Funnel Optimisation","Key Account Segmentation &amp; Incentive Design","Product-Market Alignment &amp; Offering Strategy"],skills:["Market Research &amp; Competitive Benchmarking","GTM Strategy &amp; Commercial Planning","CRM &amp; Sales Analytics","Distribution &amp; Channel Strategy","Business Process Optimisation","Stakeholder Management","Structured Problem Solving","B2B Sales","Product Thinking"]},{id:"gcpl",company:"Godrej Consumer Products Limited",role:"Sales &amp; Marketing Intern",period:"Aug &#8212; Oct 2024",location:"Mumbai, India",summary:"Hands-on experience in frontline FMCG sales across retail and distributor channels, focusing on driving secondary sales through visibility, availability, and assortment. Worked closely with on-ground sales teams to improve outlet execution and translate consumer insights into actionable in-store strategies.",bullets:["Developed <strong>5-year category growth strategy</strong> for &#8377;810 Cr fragrance portfolio, identifying <strong>&#8377;175 Cr opportunity</strong> in the women&#8217;s EDP segment","Designed <strong>&#8377;89L media investment plan</strong>, optimising channel mix and reach efficiency to achieve 25% reach sufficiency","Conducted <strong>64 consumer interviews</strong> and Nielsen Share analysis to identify 2 product gaps","Delivered <strong>104% of &#8377;7.2L sales target</strong> by refining beat planning and outlet coverage strategy","Improved sales productivity by <strong>30%</strong> across 4 reps; onboarded <strong>207 outlets</strong> via Bizom"],projects:["Territory Sales Execution &amp; Beat Planning","Outlet Performance Improvement","Retail Expansion &amp; Outlet Onboarding","In-store Merchandising &amp; Competitive Benchmarking","Consumer Insight Translation to Retail Execution"],skills:["FMCG Sales Execution","Retail &amp; Distributor Management","Beat Planning &amp; Outlet Segmentation","In-store Visibility &amp; Merchandising","Consumer Behaviour &amp; Shopper Insights","Channel Expansion &amp; Coverage","Competitive Analysis","Sales Data Interpretation"]},{id:"hpair",company:"Harvard College Project for Asian &amp; International Relations (HPAIR)",role:"Associate of Design",period:"May &#8212; Sep 2022",location:"New Delhi, India",summary:"Contributed to a large-scale international event as part of a cross-functional team &#8212; taking ownership of the visual identity and brand communication end-to-end, from concept to execution across digital and on-ground channels.",bullets:["Led <strong>branding and visual communication strategy</strong> for a 5-day global Harvard conference, hosted in India for the first time in 30 years","Collaborated with marketing, partnerships, and operations teams to ensure campaign execution across digital channels"],projects:[],skills:["Visual Communication","Brand Design","Campaign Execution","Cross-functional Collaboration"]}];
+var EDU=[{id:"spjimr",school:"S. P. Jain Institute of Management &amp; Research",degree:"PGDM &#8212; Marketing",period:"2023 &#8212; 2025",location:"Mumbai, India",summary:"Top-15 business school in India. Specialised in Marketing with coursework spanning brand strategy, consumer behaviour, sales &amp; distribution, and financial modelling.",highlights:["<strong>VP, Photography Society</strong> &#8212; led 30-member team, exhibitions with 2.5K+ footfall","<strong>Communications Committee</strong> &#8212; digital marketing for Indian Management Conclave &amp; SPARC, 10K+ reach","<strong>National Runner-Up, Castrol Case Competition</strong> &#8212; Top 4/300 teams, GTM strategy for &#8377;5,000 Cr Autocare portfolio","<strong>Asian Paints CANVAS</strong> &#8212; Top 42 out of 980+ participants","<strong>Designer, Creatives OJAS</strong> &#8212; 50K+ reach and 22K+ registrations","<strong>Google UX Design Certification</strong> &#8212; user research, wireframing, prototyping"]},{id:"kmc",school:"Kirori Mal College, University of Delhi",degree:"B.Sc. Physical Science with Computer Science",period:"2019 &#8212; 2022",location:"New Delhi, India",summary:"University of Delhi. Where science, systems thinking, and a growing interest in design and communication first collided.",highlights:["Physical Science with Computer Science &#8212; built foundations in analytical thinking and data reasoning","Where curiosity about how systems work translated into an interest in how people and markets behave"]}];
+var ARTICLES=[{cat:"Consumer Behaviour",title:"The Consumer Wasn&#8217;t Hard to Convince. He Was Just No Longer Deciding.",excerpt:"On what happens when presence and decision-making come apart &#8212; and what that means for anyone trying to influence a choice.",url:"https://medium.com/@VarunGadodia/the-consumer-was-present-the-decision-wasnt-01ef52f69bd7",date:"2025"},{cat:"Sales Strategy",title:"A Lead Doesn&#8217;t Move Until Someone Decides It&#8217;s Theirs",excerpt:"Why visibility in a CRM doesn&#8217;t translate into execution &#8212; and what actually makes a pipeline move.",url:"https://medium.com/@VarunGadodia/a-lead-doesnt-move-until-someone-decides-it-s-theirs-3098636bbd4e",date:"2025"}];
+var PROJECTS=[{title:"Movie Munchies",type:"UI/UX Design",platform:"Behance",desc:"A UI/UX design project exploring the intersection of film culture and food &#8212; designed end-to-end in Figma with Photoshop for visual assets.",tools:"Figma &#xB7; Adobe Photoshop",url:"https://www.behance.net/gallery/123550819/Movie-Munchies-UIUX-Design-Project",cover:""},{title:"Godrej Fragrance Category Strategy",type:"Brand &amp; Category Strategy",platform:"",desc:"5-year category growth strategy for &#8377;810 Cr fragrance portfolio. Identified &#8377;175 Cr opportunity in women&#8217;s EDP segment.",tools:"Consumer Research &#xB7; Nielsen Analytics &#xB7; Excel",url:"",cover:""},{title:"Castrol Autocare GTM &#8212; National Runner-Up",type:"GTM Strategy",platform:"",desc:"GTM and launch strategy for Castrol&#8217;s &#8377;5,000 Cr Autocare portfolio. Top 4 out of 300 teams nationally.",tools:"GTM Strategy &#xB7; Market Sizing &#xB7; Financial Modelling",url:"",cover:""}];
+document.getElementById("exp-list").innerHTML=EXP.map(function(exp,i){return"<div class=\"exp-item reveal\" style=\"transition-delay:"+i*.1+"s\"><div class=\"exp-trigger\" onclick=\"toggleExp(this.closest(\'.exp-item\'))\"><div><div class=\"exp-company\">"+exp.company+"</div><div class=\"exp-role-line\">"+exp.role+"</div><div class=\"exp-meta-line\">"+exp.period+" &#xB7; "+exp.location+"</div></div><div class=\"exp-chevron\">+</div></div><div class=\"exp-body\" style=\"max-height:0\"><div class=\"exp-tabs\"><button class=\"exp-tab active\" onclick=\"switchTab(this,\'"+exp.id+"-sum\')\">Summary</button>"+(exp.projects.length?"<button class=\"exp-tab\" onclick=\"switchTab(this,\'"+exp.id+"-prj\')\">Projects</button>":"")+"<button class=\"exp-tab\" onclick=\"switchTab(this,\'"+exp.id+"-sk\')\">Skills</button></div><div id=\""+exp.id+"-sum\" class=\"exp-panel active\"><p class=\"exp-summary-text\">"+exp.summary+"</p></div>"+(exp.projects.length?"<div id=\""+exp.id+"-prj\" class=\"exp-panel\"><ul class=\"exp-projects-list\">"+exp.projects.map(function(p){return"<li>"+p+"</li>"}).join("")+"</ul></div>":"")+"<div id=\""+exp.id+"-sk\" class=\"exp-panel\"><div class=\"exp-skills-wrap\">"+exp.skills.map(function(s){return"<span class=\"exp-skill-tag\">"+s+"</span>"}).join("")+"</div></div></div></div>"}).join("");
+document.getElementById("edu-list").innerHTML=EDU.map(function(edu,i){
+  return "<div class=\"edu-item reveal\" style=\"border-bottom:1px solid var(--rule);padding:22px 0;transition-delay:"+i*.1+"s\">"
+    +"<div class=\"edu-school-name\">"+edu.school+"</div>"
+    +"<div class=\"edu-degree-line\">"+edu.degree+"</div>"
+    +"<div class=\"edu-meta-line\">"+edu.period+" &#xB7; "+edu.location+"</div>"
+    +"</div>";
+}).join("");document.getElementById("writing-list").innerHTML=ARTICLES.map(function(a,i){return"<a href=\""+a.url+"\" target=\"_blank\" rel=\"noopener\" class=\"witem reveal\" style=\"transition-delay:"+i*.12+"s\"><div class=\"witem-num\">No. 0"+(i+1)+"</div><div class=\"witem-body\"><div class=\"witem-cat\">"+a.cat+"</div><div class=\"witem-title\">"+a.title+"</div><div class=\"witem-excerpt\">"+a.excerpt+"</div></div><div class=\"witem-meta\"><span class=\"witem-date\">"+a.date+"</span><span class=\"witem-read\">Read &#8594;</span></div></a>"}).join("");
+document.getElementById("proj-grid").innerHTML=PROJECTS.map(function(p,i){var hu=p.url.length>0;var hc=p.cover.length>0;return"<"+(hu?"a href=\""+p.url+"\" target=\"_blank\" rel=\"noopener\"":"div")+" class=\"proj-card reveal\" style=\"transition-delay:"+i*.1+"s\"><div class=\"proj-card-img\">"+(hc?"<img src=\""+p.cover+"\" alt=\""+p.title+"\" loading=\"lazy\" onerror=\"this.parentElement.innerHTML=\'<div class=proj-ph><span>"+p.type+"</span></div>\'>":"<div class=\"proj-ph\"><span>"+p.type+"</span></div>")+"</div><div class=\"proj-card-body\"><div class=\"proj-card-type\">"+p.type+(p.platform?" &#xB7; "+p.platform:"")+"</div><div class=\"proj-card-title\">"+p.title+"</div><div class=\"proj-card-desc\">"+p.desc+"</div><div class=\"proj-card-tools\">"+p.tools+"</div>"+(hu?"<div class=\"proj-card-link\">View &#8594;</div>":"<div style=\"font-size:10px;color:var(--terra);margin-top:10px;letter-spacing:.1em;text-transform:uppercase\">Being documented</div>")+"</div></"+(hu?"a":"div")+">"}).join("");
+document.getElementById("contact-socials").innerHTML="<a href=\"https://www.linkedin.com/in/varun-gadodia/\" target=\"_blank\" class=\"slink\"><svg viewBox=\"0 0 24 24\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>LinkedIn</a><a href=\"https://medium.com/@VarunGadodia\" target=\"_blank\" class=\"slink\"><svg viewBox=\"0 0 24 24\"><ellipse cx=\"7\" cy=\"12\" rx=\"4\" ry=\"5\"/><ellipse cx=\"16\" cy=\"12\" rx=\"2.5\" ry=\"4.5\"/><ellipse cx=\"22\" cy=\"12\" rx=\"1\" ry=\"4\"/></svg>Medium</a><a href=\"https://www.instagram.com/varuns.drafts/\" target=\"_blank\" class=\"slink\"><svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>Instagram</a><a href=\"https://www.behance.net/varungadodia\" target=\"_blank\" class=\"slink\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.2.561 1.877 1.7 1.877.339 0 .985-.19 1.074-.63h2.982zm-2.956-3.485c-.082-1.08-.66-1.752-1.64-1.752-.985 0-1.527.736-1.69 1.752h3.33z\"/><path d=\"M7 13.5c0 1.378 1.122 2.5 2.5 2.5S12 14.878 12 13.5 10.878 11 9.5 11 7 12.122 7 13.5zM2 6h9c2.761 0 5 2.239 5 5s-2.239 5-5 5H2V6zm2 2v6h4.5C10.433 14 12 12.433 12 10.5S10.433 7 8.5 7H4V8z\"/></svg>Behance</a>";
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
