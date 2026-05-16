@@ -121,6 +121,24 @@ const DATA = {
       excerpt: "Why visibility in a CRM doesn't translate into execution — and what actually makes a pipeline move.",
       url: "https://medium.com/@VarunGadodia/a-lead-doesnt-move-until-someone-decides-it-s-theirs-3098636bbd4e",
       date: "2025"
+    },
+    {
+      id: "a3",
+      title: "Earth, v6",
+      subtitle: "",
+      category: "Thought Experiment",
+      excerpt: "Notes from an absurdly demanding user of a product they didn't build.",
+      url: "https://medium.com/@VarunGadodia/earth-v6-6cdaa415c3bb",
+      date: "2026"
+    },
+    {
+      id: "a4",
+      title: "Some People You Meet for a Moment and Never Forget",
+      subtitle: "",
+      category: "Travel",
+      excerpt: "On a feverish afternoon in Puducherry, I walked into a bookstore I wasn't supposed to find.",
+      url: "https://medium.com/@VarunGadodia/some-people-you-meet-for-a-moment-and-never-forget-933375488498",
+      date: "2026"
     }
   ],
   projects: [
